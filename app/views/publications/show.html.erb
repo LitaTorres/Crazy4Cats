@@ -16,6 +16,34 @@
   <% end %>
 
   <%= link_to "Back to publications", publications_path %>
+</div>
 
+<div class="comments-section">
+  <h2>Comentarios</h2>
   
+  <% if @comments.any? %>
+  <ul class="comment-list">
+    <% @comments.each do |comment| %>
+      <li class="comment">
+        <strong>Usuario:</strong> <%= comment.user.email %><br>
+        <strong>Comentario:</strong> <%= comment.content %><br> <!--aca-->
+        
+          <%= link_to "Editar comentario", edit_comment_path(comment) %><br>
+          <%= button_to "Eliminar comentario", comment, method: :delete %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No hay comentarios para esta publicación.</p>
+<% end %>
+  
+  <h3>Añadir un comentario</h3>
+  
+  <%= form_with(model: @comment, url: publication_comments_path(@publication)) do |form| %>
+    <div class="form-group">
+      <%= form.label :content, "Comentario" %>
+      <%= form.text_area :content, class: "form-control" %>
+    </div>
+    <%= form.submit "Enviar comentario", class: "btn btn-primary" %>
+  <% end %>
 </div>
