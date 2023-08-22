@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-   root "homes#index"
+   root "publications#index"
    get "/publications", to: "publications#index", as: "user_root"
-end
+   post '/reactions', to: 'reactions#user_reaction', as: 'user_reaction'
+   get '/my_reactions', to: 'reactions#publication_with_reactions', as: 'my_reactions'
+  end
+
+#agregue linea 14

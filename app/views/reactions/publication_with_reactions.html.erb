@@ -1,0 +1,12 @@
+<h1>Publication</h1>
+<ul>
+    <% @publication.each do |publication| %>
+    <li>
+        <%= publication.title %> -
+        <%= publication.find_kind_user_relation(current_user) %>
+        <p>
+            <%= link_to "Show this publication", publication %>
+        </p>
+    </li>
+    <% end %>
+</ul>
