@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[ show edit update destroy ]
 
+
   # GET /comments or /comments.json
   def index
     @comments = Comment.all
@@ -24,6 +25,12 @@ class CommentsController < ApplicationController
     @publication = Publication.find(params[:publication_id])
     @comment = @publication.comments.build(comment_params)
     @comment.user = current_user
+
+    if user_signed_in? 
+      @comment.user = current_user
+    else
+      @comment.user = User.find_by(email: "anonimo@gmail.com")
+    end
 
     respond_to do |format|
       if @comment.save
