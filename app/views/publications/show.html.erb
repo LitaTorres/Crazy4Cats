@@ -1,50 +1,63 @@
-<p style="color: green"><%= notice %></p>
+<h1 class="titulo">Publicación</h1>
 
-<%= render @publication %>
+<div class="reglas">
+  <p style="color: green"><%= notice %></p>
 
-<div>
-  <%= render "reactions/options" %>
-</div>
+  <%= render @publication %>
 
-<div>
-  <% if user_signed_in? %>
+  <div class="reactions">
+    <div class="container">
+      <div class="btn-group" role="group">
+        <% Reaction.kinds.each do |kind| %>
+        <%= button_to "#{kind}", user_reaction_path(publication_id: @publication.id, kind: kind), method: :post, class: "btn btn-secondary" %>
+        <br><br>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <% if user_signed_in? %>
     <% if current_user.id == @publication.user_id %>
-      <%= link_to "Editar this publication", edit_publication_path(@publication) %> 
-      <%= button_to "Destroy this publication", @publication, method: :delete %>
+    <%= link_to "Editar esta publicación", edit_publication_path(@publication), class: "btn btn-primary" %> <br><br>
+    <%= button_to "Eliminar esta publicación", @publication, method: :delete, class: "btn btn-primary" %> <br>
     <% end %>
-  <% end %>
+    <% end %>
 
-  <%= link_to "Back to publications", publications_path %>
-</div>
+    <%= link_to "Volver a las publicaciones", publications_path, class: "btn btn-warning" %> <br><br>
+  </div>
 
-<div class="comments-section">
-  <h2>Comentarios</h2>
-  
-  <% if @comments.any? %>
-    <ul class="comment-list">
+  <div class="comments-section">
+    <h2>MeowMentarios </h2> <br>
+
+    <% if @comments.any? %>
+    <div class="card-deck">
       <% @comments.each do |comment| %>
-        <li class="comment">
-          <strong>Usuario:</strong> <%= comment.user.email %><br>
-          <strong>Comentario:</strong> <%= comment.content %><br> <!--aca-->
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><strong>Usuario:</strong> <%= comment.user.email %></h5>
+          <p class="card-text"><strong>Comentario:</strong> <%= comment.content %></p>
 
           <% if user_signed_in? && current_user.id == comment.user_id %>
-            <%= link_to "Editar comentario", edit_comment_path(comment) %><br>
-            <%= button_to "Eliminar comentario", comment, method: :delete %>
-          <% end %> 
-        </li>
+          <%= link_to "Editar comentario", edit_comment_path(comment), class: "btn btn-primary" %><br><br>
+          <%= button_to "Eliminar comentario", comment, method: :delete, class: "btn btn-primary" %> <br><br>
+          <% end %>
+        </div>
+      </div>
       <% end %>
-    </ul>
-  <% else %>
-    <p>No hay comentarios para esta publicación.</p>
-  <% end %>
-  
-  <h3>Añadir un comentario</h3>
-  
-  <%= form_with(model: @comment, url: publication_comments_path(@publication)) do |form| %>
-    <div class="form-group">
-      <%= form.label :content, "Comentario" %>
-      <%= form.text_area :content, class: "form-control" %>
     </div>
-    <%= form.submit "Enviar comentario", class: "btn btn-primary" %>
-  <% end %>
+    <% else %>
+    <p>No hay comentarios para esta publicación.</p>
+    <% end %> <br>
+
+    <h2>Añadir un comentario</h2>
+
+    <%= form_with(model: @comment, url: publication_comments_path(@publication)) do |form| %>
+    <div class="form-group">
+      <%= form.label :content, "MeowMentarios " %>
+      <%= form.text_area :content, class: "form-control" %> <br>
+    </div>
+    <%= form.submit "Enviar comentario", class: "btn btn-warning" %> <br> <br>
+    <% end %>
+  </div>
 </div>

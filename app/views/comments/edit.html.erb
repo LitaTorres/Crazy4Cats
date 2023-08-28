@@ -1,10 +1,21 @@
-<h1>Editing comment</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <%= image_tag '10.jpg', class: "img-fluid", alt:"crazy4cats", style: "width: 900px; height: 500px; object-fit: cover; margin-bottom: 40px;" %>
+    </div>
 
-<%= render "form", comment: @comment %>
+    <div class="col-4 reglas">
+      <h1 class="titulo">Editar este comentario</h1>
 
-<br>
+      <%= render "form", comment: @comment %>
 
-<div>
-  <%= link_to "Show this comment", @comment %> |
-  <%= link_to "Back to publications", publications_path %>
+      <br>
+
+      <div>
+        <%= link_to "Vovler a las publicaciones", publications_path , class:"btn btn-dark" %>
+      </div>
+    </div>
+  </div>
 </div>
+
+<%= image_tag '9.gif', class: "img-fluid", alt:"crazy4cats", style: "width: 900px; height: 500px; object-fit: cover; margin-bottom: 40px;" %>

@@ -1,61 +1,64 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Crazy4Cats</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  </head>
-
-  <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <%= link_to "Home", homes_index_path, class: "nav-link" %>
+<head>
+  <title>Crazy4Cats</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Pacifico&family=Playfair:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&family=Metal+Mania&family=Open+Sans:wght@400;700&family=Pacifico&family=Playfair:wght@300&family=Press+Start+2P&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="fondolayout">
+  <nav class="navbar navbar-expand-lg fondo">
+    <div class="container-fluid">
+      <a class="navbar-brand ms-5" href="#" style="color: white;"> CATLOVERS</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item mt-2">
+            <%= link_to "Catnicio", homes_index_path, class: "btn btn-link fs-5 text-white" %>
+          </li>
+          <li class="nav-item mt-2">
+            <%= link_to "Gatadas del día", publications_path, class: "btn btn-link fs-5 text-white" %>
+          </li>
+          <% if user_signed_in? %>
+            <li class="nav-item mt-2">
+              <%= link_to current_user.email, edit_user_registration_path, class: "btn btn-link fs-5 text-white" %>
             </li>
-            <% if user_signed_in? %>
-              <li class="nav-item">
-                <%= link_to current_user.email, edit_user_registration_path, class: "nav-link" %> </a> 
-              </li> 
-              <li class="nav-item">
-                <%= link_to "Publicaciones", publications_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "Salir", destroy_user_session_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "Tus reacciones", my_reactions_path, class: "nav-link" %> 
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "Registro", new_user_registration_path, class: "nav-link" %>
-              </li>
-            <% end %>
-
-          </ul>
-        </div>
+            <li class="nav-item mt-2">
+              <%= link_to "Meow-reacciones", my_reactions_path, class: "btn btn-link fs-5 text-white" %>
+            </li>
+            <li class="nav-item mt-2">
+              <%= link_to "Huir de la caja", destroy_user_session_path, class: "btn btn-link fs-5 text-white" %>
+            </li>
+          <% else %>
+            <li class="nav-item mt-2">
+              <%= link_to "Abre la puerta felina", new_user_session_path, class: "btn btn-link fs-5 text-white" %>
+            </li>
+            <li class="nav-item mt-2">
+              <%= link_to "Unirse a la manada", new_user_registration_path, class: "btn btn-link fs-5 text-white" %>
+            </li>
+          <% end %>
+        </ul>
       </div>
-    </nav>
-
-    <div class="container">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-
-      <%= yield %>
     </div>
+  </nav>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"> </script>
-  </body>
-</html>
+  <div class="container mt-4">
+    <%= yield %>
+  </div>
+
+  <hr class="my-4">
+
+  <footer class="fondo footer">
+    <div class="text-center">
+      © 2023 Crazy4Cats:
+      <section>
+        Todos los derechos reservados
+      </section>
+      <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color

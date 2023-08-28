@@ -1,14 +1,22 @@
-<p style="color: green"><%= notice %></p>
+<div class="container centro">
+  <p style="color: green"><%= notice %></p>
+  <h1 class="titulo">GATADAS DEL DÍA</h1> <br>
 
-<h1>Publications</h1>
-
-<div id="publications">
-  <% @publications.each do |publication| %>
-    <%= render publication %>
-    <p>
-      <%= link_to "Show this publication", publication %>
-    </p>
-  <% end %>
+  <div class="reglas">
+    <%= link_to "Nuevo ronroneo", new_publication_path , class: "btn btn-dark mt-4"%> <br><br>
+    <div id="publications">
+      <% @publications.each do |publication| %>
+        <div class="publication mb-4"> 
+          <%= render publication %>
+          <p>
+            <%= link_to "Mostrar esta publicación", publication , class: "btn btn-dark mt-4" %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
 
-<%= link_to "New publication", new_publication_path %>
+<div class="reglas">
+  <%= link_to "Nuevo ronroneo", new_publication_path, class: "btn btn-dark" %> <br><br>
+</div>

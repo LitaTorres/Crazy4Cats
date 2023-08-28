@@ -3,10 +3,10 @@ class Reaction < ApplicationRecord
   belongs_to :user
 
   validates :kind, acceptance: {
-    accept: %w[like dislike boting neutral uninterested interested]
+    accept: %w[Me_gusta No_me_gusta Divertido Neutral Hermoso Interesante]
   }
 
   def self.kinds 
-    %w[like dislike boting neutral uninterested interested]
+    %w[Me_gusta No_me_gusta Divertido Neutral Hermoso Interesante]
   end 
 end

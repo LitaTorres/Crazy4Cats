@@ -1,10 +1,22 @@
-<h1>Editing publication</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <%= image_tag '10.jpg', class: "img-fluid", alt:"crazy4cats", style: "width: 900px; height: 500px; object-fit: cover; margin-bottom: 40px;" %>
+    </div>
 
-<%= render "form", publication: @publication %>
+    <div class="col-4">
+      <h1 class="titulo">Edita tu publicación</h1>
 
-<br>
+      <%= render "form", publication: @publication %>
 
-<div>
-  <%= link_to "Show this publication", @publication %> |
-  <%= link_to "Back to publications", publications_path %>
+      <br>
+
+      <div>
+        <%= link_to "Mostrar esta publicación", @publication , class:"btn btn-dark"%> <br><br>
+        <%= link_to "Volver a las publicaciones", publications_path , class:"btn btn-dark" %>
+      </div>
+    </div>
+  </div>
 </div>
+
+<%= image_tag '8.gif', class: "img-fluid", alt:"crazy4cats", style: "width: 900px; height: 500px; object-fit: cover; margin-bottom: 40px;" %>

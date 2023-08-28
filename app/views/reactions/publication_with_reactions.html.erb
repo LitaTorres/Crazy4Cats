@@ -1,12 +1,20 @@
-<h1>Publication</h1>
-<ul>
-    <% @publication.each do |publication| %>
-    <li>
-        <%= publication.title %> -
-        <%= publication.find_kind_user_relation(current_user) %>
-        <p>
-            <%= link_to "Show this publication", publication %>
-        </p>
-    </li>
-    <% end %>
-</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="titulo"> Tus reacciones </h1>
+            <ul class="reglas">
+                <% @publication.each do |publication| %>
+                <li>
+                    <%= publication.title %> -
+                    <%= publication.find_kind_user_relation(current_user) %> <br><br>
+                    <p>
+                        <%= link_to "Mostrar esta publicación", publication, class: "btn btn-primary" %>
+                    </p>
+                </li>
+                <% end %>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<%= image_tag '10.gif', class: "img-fluid", alt:"crazy4cats", style: "width: 900px; height: 500px; object-fit: cover; margin-bottom: 40px;" %>

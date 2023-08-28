@@ -1,53 +1,71 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container">
+  <div class="row">
+      <div class="col-5">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<h2 class="titulo">Edita tus datos de  <%= resource_name.to_s.humanize %></h2>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+<div class="reglas">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label :email, "Correo" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :password , "Contraseña" %> <i></i><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
+      <% if @minimum_password_length %>
+        <br />
+        <em><%= @minimum_password_length %> carácteres mínimos</em>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation, "Confirmación de contraseña" %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :current_password , "Contraseña actual" %> <i>(Necesitamos su contraseña actual para confirmar sus cambios)</i><br />
+      <%= f.password_field :current_password, autocomplete: "current-password" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :name, "Nombre" %><br />
+      <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :age , "Edad" %><br />
+      <%= f.text_field :age, autofocus: true, autocomplete: "age" %>
+    </div> <br>
+
+    <div class="actions">
+      <%= f.submit "Actualizar",  class: "btn btn-secondary" %> <br><br>
+    </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+  <h3>¿Cancelar mi cuenta?</h3>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+  <div> ¿No estás Contento? <%= button_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-secondary" %></div> <br>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
+  <%= link_to "Volver a las publicaciones", :back , class: "btn btn-secondary"%> <br> <br>
+</div>
+</div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-  </div>
+<div class="col-7">
+  <%= image_tag '10.jpg', class: "img-fluid", alt:"crazy4cats", style: "width: 900px; height: 500px; object-fit: cover; margin-bottom: 40px;" %>
+</div>
+</div>
+</div>
 
-  <div class="field">
-    <%= f.label :age %><br />
-    <%= f.text_field :age, autofocus: true, autocomplete: "age" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+<div class="reglas">
+<%= image_tag '12.gif', class: "img-fluid", alt:"crazy4cats", style: "width: 900px; height: 500px; object-fit: cover; margin-bottom: 40px;" %>
+</div>
